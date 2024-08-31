@@ -1,16 +1,18 @@
 FROM gitpod/workspace-full:latest
 
-# Install NVM, Node.js, and mkcert
 USER gitpod
 
-# Install NVM and Node.js
+# Install NVM, Node.js, mkcert, and Ngrok
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash \
     && export NVM_DIR="$HOME/.nvm" \
     && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
     && nvm install 18 \
     && nvm use 18 \
     && npm install -g npm@latest \
-    && npm install https://ssdk.surveysparrow.dev/ssdk.tgz -g
+    && npm install https://ssdk.surveysparrow.dev/ssdk.tgz -g \
+    && wget https://bin.equinox.io/c/4b7f9d9d7b4e/ngrok-stable-linux-amd64.zip \
+    && unzip ngrok-stable-linux-amd64.zip \
+    && sudo mv ngrok /usr/local/bin/
 
 # Install mkcert
 RUN sudo apt-get update \
@@ -22,10 +24,6 @@ RUN sudo apt-get update \
 # Ensure mkcert is available in the path and trust the CA
 RUN mkcert -install
 
-# Add mkcert to the PATH environment variable
-ENV PATH="/usr/local/bin:$PATH"
-
-# This will ensure the right Node.js version is used when the container starts
 ENV NVM_DIR="/home/gitpod/.nvm"
 ENV NODE_VERSION="18"
 RUN echo "source $NVM_DIR/nvm.sh && nvm use $NODE_VERSION" >> /home/gitpod/.bashrc
