@@ -9,7 +9,7 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | b
     && nvm install 18 \
     && nvm use 18 \
     && npm install -g npm@latest
-    && npm install -g https://ssdk.surveysparrow.dev/ssdk.tgz
+    && npm install https://ssdk.surveysparrow.dev/ssdk.tgz -g
 
 # Install mkcert
 RUN sudo apt-get update \
