@@ -12,9 +12,9 @@ RUN npm install -g npm@latest
 RUN npm install https://ssdk.surveysparrow.dev/ssdk.tgz -g
 
 # Install Ngrok
-RUN wget https://bin.equinox.io/c/4b7f9d9d7b4e/ngrok-stable-linux-amd64.zip
-RUN unzip ngrok-stable-linux-amd64.zip
+RUN curl -s https://ngrok.com/download | tar xvz
 RUN sudo mv ngrok /usr/local/bin/
+
 
 # Install mkcert
 RUN sudo apt-get update && sudo apt-get install -y libnss3-tools
