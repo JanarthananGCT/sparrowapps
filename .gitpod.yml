@@ -1,7 +1,9 @@
 image:
   file: .gitpod.Dockerfile
+tasks:
+  - name: Install CLI and dependencies
+    command: |
+      ./get-ngrok-url.sh
 ports:
-  - port: 3001
-    onOpen: open-preview
-  - port: 5000
-    onOpen: open-preview
+  - port: 30001
+    onOpen: ignore
