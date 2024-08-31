@@ -12,8 +12,8 @@ RUN npm install -g npm@latest
 RUN npm install https://ssdk.surveysparrow.dev/ssdk.tgz -g
 
 # Install Ngrok
-RUN curl -s https://ngrok.com/download | tar xvz
-RUN sudo mv ngrok /usr/local/bin/
+# RUN curl -s https://ngrok.com/download | tar xvz
+# RUN sudo mv ngrok /usr/local/bin/
 
 
 # Install mkcert
